@@ -13,32 +13,24 @@ namespace WeatherForecast.Services
         public async Task<IList<string>> GetListOfCitiesAsync()
         {
             var result = new List<string>();
-
-            try
+            var url = Constants.API_URL + Constants.GET_CITIES_METHOD;
+            var client = new RestClient(url)
             {
-
-                var client = new RestClient("https://sandbox.musement.com/api/v3/cities");
-                client.Timeout = -1;
-                var request = new RestRequest(Method.GET);
-                IRestResponse response = await client.ExecuteAsync(request);
-                if (response.IsSuccessful && response.Content != null)
+                Timeout = -1
+            };
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = await client.ExecuteAsync(request);
+            if (response.IsSuccessful && response.Content != null)
+            {
+                var list = JArray.Parse(response.Content);
+                foreach (var item in list)
                 {
-                    var list = JArray.Parse(response.Content);
-                    foreach (var item in list)
+                    var name = item["name"];
+                    if (name != null)
                     {
-                        var name = item["name"];
-                        if (name != null)
-                        {
-                            result.Add(name.ToString());
-                        }
+                        result.Add(name.ToString());
                     }
                 }
-
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(ex.Message);
             }
             return result;
         }
