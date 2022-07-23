@@ -7,12 +7,13 @@ namespace WeatherForecast
     {
 
         private readonly ICityService _cityService;
+        private readonly IWeatherService _weatherService;
 
         public Executor
-            (
-            ICityService cityService)
+            (IWeatherService weatherService, ICityService cityService)
         {
             _cityService = cityService;
+            _weatherService = weatherService;
         }
 
         public async Task ExecuteAsync()
@@ -33,10 +34,11 @@ namespace WeatherForecast
                     switch (command)
                     {
                         case "weather":
-                            //TODO
+                            var weatherForecast = _weatherService.GetWeatherForecast();
+                            Printer.Print(weatherForecast);
                             break;
                         case "cities":
-                            var output = await _cityService.GetListOfCitiesAsyncForOutput();
+                            var output = _cityService.GetListOfCitiesAsyncForOutput();
                             Printer.Print(output);
                             break;
                         case "help":

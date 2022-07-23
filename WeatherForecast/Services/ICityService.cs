@@ -8,7 +8,7 @@ namespace WeatherForecast.Services
 {
     public interface ICityService
     {
-        Task<IList<string>> GetListOfCitiesAsync();
-        Task<StringBuilder> GetListOfCitiesAsyncForOutput();
+        IList<string> GetListOfCitiesAsync();
+        StringBuilder GetListOfCitiesAsyncForOutput();
     }
 }

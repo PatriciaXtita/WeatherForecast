@@ -10,7 +10,7 @@ namespace WeatherForecast.Services
 {
     public class CityService : ICityService
     {
-        public async Task<IList<string>> GetListOfCitiesAsync()
+        public IList<string> GetListOfCitiesAsync()
         {
             var result = new List<string>();
             var url = Constants.API_URL + Constants.GET_CITIES_METHOD;
@@ -19,7 +19,7 @@ namespace WeatherForecast.Services
                 Timeout = -1
             };
             var request = new RestRequest(Method.GET);
-            IRestResponse response = await client.ExecuteAsync(request);
+            IRestResponse response = client.Execute(request);
             if (response.IsSuccessful && response.Content != null)
             {
                 var list = JArray.Parse(response.Content);
@@ -35,9 +35,9 @@ namespace WeatherForecast.Services
             return result;
         }
 
-        public async Task<StringBuilder> GetListOfCitiesAsyncForOutput()
+        public StringBuilder GetListOfCitiesAsyncForOutput()
         {
-            var cities = await GetListOfCitiesAsync();
+            var cities = GetListOfCitiesAsync();
             var sb = new StringBuilder();
             foreach (var c in cities)
             {
