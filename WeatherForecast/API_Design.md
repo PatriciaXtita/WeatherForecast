@@ -4,7 +4,7 @@ Some of these already exist and are supported, others still need further work.
 
 ## Endpoint
 
-### Get the city weather for a chosen day
+- Get the city weather for a chosen day
 ```
 GET /api/v3/cities/{city}/day/{day}
 
@@ -19,7 +19,7 @@ $ curl -X GET '/api/v3/cities/Lisboa/day/1'
 ```
 Will return "Sunny".
 
-### Set the city weather for a chosen day. This endpoint requires a OAuth authentication token.
+- Set the city weather for a chosen day. This endpoint requires a OAuth authentication token.
 ```
 PUT /api/v3/cities/{city}/day/{day}
 
