@@ -50,7 +50,7 @@ namespace WeatherForecast.Services
             return sb;
         }
 
-        private string GetWeatherOfCityForDay(string city, int day)
+        public string GetWeatherOfCityForDay(string city, int day)
         {
             string result = "no data";
             var url = Constants.WEATHER_API_URL + Constants.WEATHER_API_METHOD + "?key=" +
