@@ -13,7 +13,7 @@ $ curl -X GET '/api/v3/cities/{city}/day/{day}'
 This will return a string with the weather for the passed day parameter in the city chosen.
 The day must be 1 for today and +1 for each day in advance we want to target, meaning tomorrow would be 2 the next day a 3 and so on.
 
-Example:
+Example - "What's the weather today?":
 ```
 $ curl -X GET '/api/v3/cities/Lisboa/day/1' 
 ```

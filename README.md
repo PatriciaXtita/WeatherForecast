@@ -13,3 +13,5 @@ The goal is to support a weather forecast per city where tourist experiences tak
 - The project does not use a database.
 - There is a API_Design file with a structure that provides the design of endpoints which will support more forecasting functionalities in this project.
 
+
+Developed by: Patricia Rocha
